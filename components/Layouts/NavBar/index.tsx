@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       fontStyle: 'BOLD',
+      fontFamily: 'Roboto',
       paddingRight:100
     },
     otherNavText: {

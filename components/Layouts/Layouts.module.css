@@ -4,7 +4,8 @@
     opacity: 0.95;
 }
 .contentWrapper {
-    background-color: #545454;
+    background-color:black;
     height: 93vh;
-    mix-blend-mode: multiply;
+    opacity: 0.85;
+    /* mix-blend-mode: multiply; */
 }
