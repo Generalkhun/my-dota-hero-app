@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface Props {
-
+    data:Object
 }
 
 const herolist = (props: Props) => {
