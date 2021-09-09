@@ -1,0 +1,10 @@
+.bodyWrapper {
+    background-image: url("https://cdn.hipwallpaper.com/i/71/52/OgFiyn.jpg");
+    background-repeat: no-repeat;
+    opacity: 0.95;
+}
+.contentWrapper {
+    background-color: #545454;
+    height: 93vh;
+    mix-blend-mode: multiply;
+}
