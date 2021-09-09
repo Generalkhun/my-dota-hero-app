@@ -10,14 +10,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         height: theme.spacing(7),
     },
     avatarsWrapper: {
-        marginTop: 20,
         marginLeft: 20,
-        height: '100%',
         width: '80%',
         backgroundColor: '#2C2E43'
     },
     listItemDisplay: {
-        backgroundColor: 'black'
+        backgroundColor: 'black',
     }
 }));
 
