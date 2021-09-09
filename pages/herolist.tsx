@@ -1,33 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { DisplaySetting } from '../components/DisplaySetting';
+import HeroListDisplay from '../components/HeroListDisplay';
 
 interface Props {
-    data:Object
+    data:any
 }
 
 const herolist = (props: Props) => {
-    console.log(props);
-
+    const {resHeroStatsData} = props.data
+    const [searchedHero, setSearchHero] = useState('')
     return (
-        <div>
-            {JSON.stringify(props.data)}
-        </div>
+        <>
+        <DisplaySetting heroList={resHeroStatsData} />
+        <HeroListDisplay 
+            resHeroStatsData={resHeroStatsData}
+        />
+        </>
     )
 }
 
 export async function getStaticProps(context) {
-    const resHero = await fetch(`https://api.opendota.com/api/heroes`)
+    //const resHero = await fetch(`https://api.opendota.com/api/heroes`)
     const resHeroStats = await fetch(`https://api.opendota.com/api/heroStats`)
     // http://cdn.dota2.com/apps/dota2/images/heroes/crystal_maiden_full.png
 
-    const resHeroData = await resHero.json()
+    //const resHeroData = await resHero.json()
     const resHeroStatsData = await resHeroStats.json()
-    if (!resHeroData || !resHeroStatsData) {
+    if (!resHeroStatsData) {
         return {
             notFound: true,
         }
     }
     return {
-        props: { data: { resHeroData, resHeroStatsData } }, // will be passed to the page component as props
+        props: { data: { resHeroStatsData } }, // will be passed to the page component as props
     }
 }
 
