@@ -6,9 +6,9 @@ interface Props {
 
 const myfavhero = (props: Props) => {
     return (
-        <div>
-            myfavHero
-        </div>
+        <>
+        s
+        </>
     )
 }
 
