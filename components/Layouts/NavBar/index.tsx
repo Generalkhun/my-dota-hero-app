@@ -1,28 +1,29 @@
-import { Button, IconButton, Theme, Toolbar, Typography, AppBar, makeStyles, createStyles, Hidden } from "@material-ui/core";
+import { IconButton, Theme, Toolbar, Typography, AppBar, makeStyles, createStyles, Hidden, Grid } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import StarIcon from '@material-ui/icons/Star';
 import React from "react";
-import styles from './NavBar.module.css'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
     },
     menuButton: {
       marginRight: theme.spacing(2),
     },
     title: {
       fontStyle: 'BOLD',
-      flexGrow: 1,
+      paddingRight:100
     },
-    favoriteText: {
-      paddingLeft: 10,
-      paddingTop: 10,
-      fontFamily: 'Italianno'
+    otherNavText: {
+      paddingLeft:10,
+      fontSize: '1.3rem',
+      fontFamily: 'Italianno',
     },
-
+    otherNavIcon: {
+      marginLeft:'auto',
+      paddingBottom: 5
+    }
   }),
 );
 
@@ -38,24 +39,24 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             MY DOTA HERO
           </Typography>
-          <Hidden xsDown>
+
+          <Hidden smDown>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <StarIcon />
-              <Typography className={classes.favoriteText}>
+              <StarIcon className={classes.otherNavIcon} />
+              <Typography className={classes.otherNavText}>
                 HERO LIST
               </Typography>
             </IconButton>
 
-
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <FavoriteIcon />
-              <Typography className={classes.favoriteText}>
+              <FavoriteIcon className={classes.otherNavIcon} />
+              <Typography className={classes.otherNavText}>
                 My favorite
               </Typography>
             </IconButton>
 
           </Hidden>
-          <Hidden smUp>
+          <Hidden mdUp>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
