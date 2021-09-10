@@ -8,13 +8,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 455,
+        maxWidth: 400,
     },
     media: {
-        height: 240
+        height: 200
     },
 });
 
@@ -46,9 +47,13 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
                         <img src={`http://cdn.dota2.com/${heroCardMediaData.icon}`}/>
                         {' ' + heroCardMediaData.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                    <Typography variant="body2" color="textSecondary" component="b">
+                        Attack Type: {heroCardMediaData.attack_type}
+                    </Typography>
+                    
+                    <Divider />
+                    <Typography variant="body2" color="textSecondary" component="b">
+                    Roles: {heroCardMediaData.roles.map(role=>" "+role)}
                     </Typography>
                 </CardContent>
             </CardActionArea>
