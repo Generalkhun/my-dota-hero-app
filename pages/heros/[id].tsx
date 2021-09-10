@@ -1,21 +1,27 @@
 
+import { Grid, Paper } from '@material-ui/core'
 import { filter } from 'lodash'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import React from 'react'
+import HeroInfo from '../../components/HeroInfo'
 
 interface Props {
 
 }
 
-const Details = (props: Props) => {
+const Details = ({ heroStat }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const router = useRouter()
     const { id } = router.query
     // if id is not valid, explicitly redirect to 404 page
     if (!id) {
         router.push('/404')
     }
-    return <p>Hero: {id}</p>
+    return (
+        <HeroInfo
+            heroStat={heroStat}
+        />
+    )
 }
 
 
@@ -51,11 +57,10 @@ export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
     const resHeroStats = await fetch('https://api.opendota.com/api/heroStats')
     const heroStats = await resHeroStats.json()
     const heroStat = filter(heroStats, (stat) => {
-        return stat.id === params.id
+        return stat.id.toString() === params.id
     })
 
     console.log('heroStat', heroStat);
-
 
     // Pass post data to the page via props
     return { props: { heroStat } }
