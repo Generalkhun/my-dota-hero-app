@@ -3,6 +3,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import StarIcon from '@material-ui/icons/Star';
 import React from "react";
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,15 +15,15 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       fontStyle: 'BOLD',
       fontFamily: 'Cinzel',
-      paddingRight:100
+      paddingRight: 100
     },
     otherNavText: {
-      paddingLeft:10,
+      paddingLeft: 10,
       fontSize: '1.3rem',
       fontFamily: 'Cinzel',
     },
     otherNavIcon: {
-      marginLeft:'auto',
+      marginLeft: 'auto',
       paddingBottom: 5
     }
   }),
@@ -44,16 +45,21 @@ const NavBar = () => {
           <Hidden smDown>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <StarIcon className={classes.otherNavIcon} />
+              <Link href='/heros'>
               <Typography className={classes.otherNavText}>
                 HERO LIST
               </Typography>
+              </Link>
             </IconButton>
 
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <FavoriteIcon className={classes.otherNavIcon} />
-              <Typography className={classes.otherNavText}>
-                My favorite
-              </Typography>
+              <Link href='/myfavhero'>
+                <Typography className={classes.otherNavText}>
+                  My favorite
+                </Typography>
+              </Link>
+
             </IconButton>
 
           </Hidden>
