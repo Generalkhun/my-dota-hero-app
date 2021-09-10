@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       fontStyle: 'BOLD',
-      fontFamily: 'Roboto',
+      fontFamily: 'Cinzel',
       paddingRight:100
     },
     otherNavText: {
       paddingLeft:10,
       fontSize: '1.3rem',
-      fontFamily: 'Italianno',
+      fontFamily: 'Cinzel',
     },
     otherNavIcon: {
       marginLeft:'auto',

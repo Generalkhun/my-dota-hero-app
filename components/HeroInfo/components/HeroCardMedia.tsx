@@ -15,7 +15,8 @@ const useStyles = makeStyles({
         maxWidth: 400,
     },
     media: {
-        height: 200
+        height: 200,
+        fontFamily:'Cinzel'
     },
 });
 
@@ -25,6 +26,7 @@ interface heroCardMediaDataType {
     img: string
     attack_type: string
     roles: string[]
+    primary_attr: string
 }
 
 interface Props {
@@ -40,20 +42,22 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
                 <CardMedia
                     className={classes.media}
                     image={`http://cdn.dota2.com/${heroCardMediaData.img}`}
-                    title="Hero main information"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h4" component="h2">
-                        <img src={`http://cdn.dota2.com/${heroCardMediaData.icon}`}/>
+                    <Typography style={{fontFamily:'Cinzel'}} gutterBottom variant="h4" component="h2">
+                        <img src={`http://cdn.dota2.com/${heroCardMediaData.icon}`} />
                         {' ' + heroCardMediaData.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="b">
+                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
+                        Primary Attribute: {heroCardMediaData.primary_attr}
+                    </Typography>
+                    <Divider />
+                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
                         Attack Type: {heroCardMediaData.attack_type}
                     </Typography>
-                    
                     <Divider />
-                    <Typography variant="body2" color="textSecondary" component="b">
-                    Roles: {heroCardMediaData.roles.map(role=>" "+role)}
+                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
+                        Roles: {heroCardMediaData.roles.map(role => " " + role)}
                     </Typography>
                 </CardContent>
             </CardActionArea>

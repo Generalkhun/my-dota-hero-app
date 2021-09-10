@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
+import HeroAbilitiesInfo from './components/HeroAbilitiesInfo';
 import HeroCardMedia from './components/HeroCardMedia'
 import { mapHeroAbilitiesData, mapHeroCardMediaData } from './mapDataUtils';
 
@@ -17,14 +18,14 @@ const HeroInfo = ({ heroStat }: Props) => {
 
     return (
         <Grid style={{ marginTop: 20, marginLeft: 40, height: '60vh' }} container>
-            <Grid item sm={12} md={6} lg={4}>
+            <Grid item xs={10} sm={4} md={4} lg={3}>
                 <HeroCardMedia
                     heroCardMediaData={heroCardMediaData}
                 />
             </Grid>
-            <Grid item sm={12} md={6} lg={4}>
+            <Grid item xs={10} sm={6} md={7} lg={8}>
                 <HeroAbilitiesInfo 
-                    heroCardMediaData={heroCardMediaData}
+                    heroAbilitiesData={heroAbilitiesData}
                 />
             </Grid>
         </Grid>
