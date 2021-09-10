@@ -58,9 +58,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
     const heroStats = await resHeroStats.json()
     const heroStat = filter(heroStats, (stat) => {
         return stat.id.toString() === params.id
-    })
-
-    console.log('heroStat', heroStat);
+    })[0]
 
     // Pass post data to the page via props
     return { props: { heroStat } }
