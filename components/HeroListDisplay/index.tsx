@@ -1,6 +1,7 @@
-import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid } from '@material-ui/core';
+import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip } from '@material-ui/core';
 import React from 'react'
 import { map } from 'lodash'
+import Link from 'next/link'
 interface Props {
     resHeroStatsData: Array<any>
 }
@@ -19,6 +20,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     }
 }));
 
+const heroClickedOnListHandler = (e: any, heroStatus: Object) => {
+    console.log('heroStatus', heroStatus);
+
+}
+
 
 const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData } = props
@@ -30,11 +36,17 @@ const HeroListDisplay = (props: Props) => {
                 return (
                     <Grid item xs={1}>
                         <Paper className={classes.avatarsWrapper}>
-                            {map(resHeroStatsData.slice(0+(colNum*11), 11+(colNum*11)), function (heroStatus, index) {
+                            {map(resHeroStatsData.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
-                                    <ListItem className={classes.listItemDisplay} button key={index}>
-                                        <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
-                                    </ListItem>
+                                    // <Link href='/herodetail'>
+                                    <Tooltip title={<Link href="/herodetail">{heroStatus.localized_name}</Link>} placement="top" interactive>
+                                        <ListItem className={classes.listItemDisplay} key={index} onClick={(e) => heroClickedOnListHandler(e, heroStatus)}>
+                                            <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
+                                        </ListItem>
+                                    </Tooltip>
+                                    // </Link>
+
+
                                 )
                             }
                             )}
