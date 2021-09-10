@@ -4,7 +4,7 @@ module.exports = {
         // redirect from homepage to herolist automatically
         {
           source: '/',
-          destination: '/herolist',
+          destination: '/heros',
           permanent: true,
         },
       ]

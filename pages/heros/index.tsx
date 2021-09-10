@@ -1,19 +1,19 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import React, { useState } from 'react'
-import { DisplaySetting } from '../components/DisplaySetting';
-import HeroListDisplay from '../components/HeroListDisplay';
+import { DisplaySetting } from '../../components/DisplaySetting';
+import HeroListDisplay from '../../components/HeroListDisplay';
 
 interface Props {
     data: any
 }
 
-const herolist = ({ resHeroStatsData }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Heros = ({ heroStats }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [searchedHero, setSearchHero] = useState('')
     return (
         <>
-            <DisplaySetting heroList={resHeroStatsData} />
+            <DisplaySetting heroList={heroStats} />
             <HeroListDisplay
-                resHeroStatsData={resHeroStatsData}
+                resHeroStatsData={heroStats}
             />
         </>
     )
@@ -25,16 +25,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // http://cdn.dota2.com/apps/dota2/images/heroes/crystal_maiden_full.png
 
     //const resHeroData = await resHero.json()
-    const resHeroStatsData = await resHeroStats.json()
-    if (!resHeroStatsData) {
+    const heroStats = await resHeroStats.json()
+    if (!heroStats) {
         return {
             notFound: true,
         }
     }
     return {
-        props: { resHeroStatsData }, // will be passed to the page component as props
+        props: { heroStats }, // will be passed to the page component as props
     }
 }
 
 
-export default herolist
+export default Heros

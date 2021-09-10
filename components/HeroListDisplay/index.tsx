@@ -1,7 +1,8 @@
-import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip } from '@material-ui/core';
+import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, IconButton } from '@material-ui/core';
 import React from 'react'
 import { map } from 'lodash'
 import Link from 'next/link'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 interface Props {
     resHeroStatsData: Array<any>
 }
@@ -20,12 +21,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     }
 }));
 
-const heroClickedOnListHandler = (e: any, heroStatus: Object) => {
-    console.log('heroStatus', heroStatus);
-
-}
-
-
 const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData } = props
     const classes = useStyles();
@@ -34,17 +29,21 @@ const HeroListDisplay = (props: Props) => {
         <Grid container>
             {[...Array(11).keys()].map((colNum) => {
                 return (
-                    <Grid item xs={1}>
+                    <Grid key={colNum} item xs={1}>
                         <Paper className={classes.avatarsWrapper}>
                             {map(resHeroStatsData.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
-                                    // <Link href='/herodetail'>
-                                    <Tooltip title={<Link href={`/herodetail/${heroStatus.id}`}>{heroStatus.localized_name}</Link>} placement="top" interactive>
-                                        <ListItem className={classes.listItemDisplay} key={index} onClick={(e) => heroClickedOnListHandler(e, heroStatus)}>
+                                    <Tooltip key={index} title={
+                                        <>
+                                            <Link href={`heros/${heroStatus.id}`}>
+                                                {heroStatus.localized_name + " ⇨"}
+                                            </Link>
+                                        </>
+                                    } placement='bottom' arrow interactive>
+                                        <ListItem className={classes.listItemDisplay} key={index} >
                                             <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
                                         </ListItem>
                                     </Tooltip>
-                                    // </Link>
 
 
                                 )
