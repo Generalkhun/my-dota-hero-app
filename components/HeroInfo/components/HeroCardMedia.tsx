@@ -41,7 +41,9 @@ interface Props {
 const HeroCardMedia = ({ heroCardMediaData }: Props) => {
     const classes = useStyles();
 
-    const onAddFavHeroHandler = (heroCardMediaData:string) => {
+    const onAddFavHeroHandler = (name:string) => {
+        console.log('save',name,'to fav data');
+        
         // updateFavHerosList(heroCardMediaData)
     }
     return (
@@ -71,7 +73,7 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
             </CardActionArea>
             <CardActions className={classes.heroCardActionAdd2FavButton}>
 
-                <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.id)} size="large" color="secondary" startIcon={<FavoriteIcon />}>
+                <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.name)} size="large" color="secondary" startIcon={<FavoriteIcon />}>
                     ADD TO MY FAVORITE HEROS
                 </Button>
             </CardActions>
