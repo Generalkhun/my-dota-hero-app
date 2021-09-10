@@ -91,7 +91,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
         <Paper className={classes.herosAbilitiesInfoWrapper}>
 
             <Grid container style={{ marginLeft: 10 }}>
-                <Grid item xs={10} md={6} style={{ marginTop: 10, marginLeft: 20 }}>
+                <Grid item xs={10} md={6} style={{ marginTop: 20, marginLeft: 15 }}>
                     <Card className={classes.titleWrapper} variant="outlined">
                         <Typography variant='h6' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>△ BASE ATTRIBUTES</Typography>
                     </Card>
@@ -160,7 +160,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
 
                     </Card>
                 </Grid>
-                <Grid item xs={10} md={5} style={{ marginTop: 10, marginLeft: 20 }}>
+                <Grid item xs={10} md={5} style={{ marginTop: 20, marginLeft: 20 }}>
                     <Card className={classes.titleWrapper} variant="outlined">
                         <Typography variant='h6' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>✩ GAMES-STATS</Typography>
                     </Card>

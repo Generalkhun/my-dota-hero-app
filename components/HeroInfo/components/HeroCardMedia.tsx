@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles({
     root: {
@@ -16,8 +17,13 @@ const useStyles = makeStyles({
     },
     media: {
         height: 200,
-        fontFamily:'Cinzel'
+        fontFamily: 'Cinzel'
     },
+    heroCardActionAdd2FavButton: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });
 
 interface heroCardMediaDataType {
@@ -34,8 +40,10 @@ interface Props {
 }
 const HeroCardMedia = ({ heroCardMediaData }: Props) => {
     const classes = useStyles();
-    console.log('heroCardMediaData', heroCardMediaData);
 
+    const onAddFavHeroHandler = (heroCardMediaData:string) => {
+        // updateFavHerosList(heroCardMediaData)
+    }
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -44,29 +52,27 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
                     image={`http://cdn.dota2.com/${heroCardMediaData.img}`}
                 />
                 <CardContent>
-                    <Typography style={{fontFamily:'Cinzel'}} gutterBottom variant="h4" component="h2">
+                    <Typography style={{ fontFamily: 'Cinzel' }} gutterBottom variant="h4" component="h2">
                         <img src={`http://cdn.dota2.com/${heroCardMediaData.icon}`} />
                         {' ' + heroCardMediaData.name}
                     </Typography>
-                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
+                    <Typography style={{ fontFamily: 'Cinzel' }} variant="body2" color="textSecondary" component="b">
                         Primary Attribute: {heroCardMediaData.primary_attr}
                     </Typography>
                     <Divider />
-                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
+                    <Typography style={{ fontFamily: 'Cinzel' }} variant="body2" color="textSecondary" component="b">
                         Attack Type: {heroCardMediaData.attack_type}
                     </Typography>
                     <Divider />
-                    <Typography style={{fontFamily:'Cinzel'}} variant="body2" color="textSecondary" component="b">
+                    <Typography style={{ fontFamily: 'Cinzel' }} variant="body2" color="textSecondary" component="b">
                         Roles: {heroCardMediaData.roles.map(role => " " + role)}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
+            <CardActions className={classes.heroCardActionAdd2FavButton}>
+
+                <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.id)} size="large" color="secondary" startIcon={<FavoriteIcon />}>
+                    ADD TO MY FAVORITE HEROS
                 </Button>
             </CardActions>
         </Card>
