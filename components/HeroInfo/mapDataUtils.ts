@@ -31,9 +31,35 @@ export const mapHeroAbilitiesData = (heroStat: any) => {
         attack_type: heroStat.attack_type,
         cm_enabled:heroStat.cm_enabled,
         move_speed:heroStat.move_speed,
-
-
-
         
+    }
+}
+
+export const mapHeroGamesData = (heroStat:any) => {
+    return {
+        '1_pick': heroStat['1_win'],
+        '1_win': heroStat['1_win'],
+        '2_pick': heroStat['2_win'],
+        '2_win': heroStat['2_win'],
+        '3_pick': heroStat['3_win'],
+        '3_win': heroStat['3_win'],
+        '4_pick': heroStat['4_win'],
+        '4_win': heroStat['4_win'],
+        '5_pick': heroStat['5_win'],
+        '5_win': heroStat['5_win'],
+        '6_pick': heroStat['6_win'],
+        '6_win': heroStat['6_win'],
+        '7_pick': heroStat['7_win'],
+        '7_win': heroStat['7_win'],
+        '8_pick': heroStat['8_win'],
+        '8_win': heroStat['8_win'],
+        null_pick:heroStat.null_pick,
+        null_win:heroStat.null_win,
+        pro_pick:heroStat.pro_pick,
+        pro_ban:heroStat.pro_ban,
+        pro_win:heroStat.pro_win,
+        turbo_picks:heroStat.turbo_picks,
+        turbo_wins:heroStat.turbo_wins,
+        turn_rate:heroStat.turn_rate,
     }
 }
