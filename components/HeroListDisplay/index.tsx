@@ -39,7 +39,7 @@ const HeroListDisplay = (props: Props) => {
                             {map(resHeroStatsData.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
                                     // <Link href='/herodetail'>
-                                    <Tooltip title={<Link href="/herodetail">{heroStatus.localized_name}</Link>} placement="top" interactive>
+                                    <Tooltip title={<Link href={`/herodetail/${heroStatus.id}`}>{heroStatus.localized_name}</Link>} placement="top" interactive>
                                         <ListItem className={classes.listItemDisplay} key={index} onClick={(e) => heroClickedOnListHandler(e, heroStatus)}>
                                             <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
                                         </ListItem>
