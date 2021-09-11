@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         backgroundColor: '#2C2E43'
     },
     listItemDisplay: {
-        backgroundColor: 'black',
+        backgroundColor: 'black'
     }
 }));
 
