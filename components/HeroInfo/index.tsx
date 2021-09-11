@@ -11,8 +11,6 @@ interface Props {
 
 
 const HeroInfo = ({ heroStat }: Props) => {
-    console.log('heroStat',heroStat);
-    
     const heroCardMediaData = mapHeroCardMediaData(heroStat)
     const heroAbilitiesData = mapHeroAbilitiesData(heroStat)
     const heroGamesData = mapHeroGamesData(heroStat)

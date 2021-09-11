@@ -14,11 +14,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     avatarsWrapper: {
         marginLeft: 20,
         width: '80%',
-        backgroundColor: '#2C2E43',
+        backgroundColor: '#2C2E43'
     },
     listItemDisplay: {
         backgroundColor: 'black',
-        
     }
 }));
 
@@ -45,8 +44,6 @@ const HeroListDisplay = (props: Props) => {
                                             <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
                                         </ListItem>
                                     </Tooltip>
-
-
                                 )
                             }
                             )}
