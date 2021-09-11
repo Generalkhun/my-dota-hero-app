@@ -11,9 +11,6 @@ interface Props {
 
 const myfavhero = ({ heroStats }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const favHerosContextValue = useContext(FavoriteHerosContext)
-    console.log('favHerosContextValue', favHerosContextValue);
-    //console.log('props.herosData', heroStats);
-
     return (
         <Grid container style={{ marginLeft: 20, marginTop: 20 }}>
             <FavoriteHerosDisplay
