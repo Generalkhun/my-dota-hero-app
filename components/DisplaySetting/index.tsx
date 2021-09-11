@@ -4,13 +4,18 @@ import SearchBox from './components/SearchBox'
 
 interface Props {
     heroList: Array<any>
+    dispatchDisplaySettingState: any
 }
 
 export const DisplaySetting = (props: Props) => {
-    const { heroList } = props
+    const { heroList, dispatchDisplaySettingState } = props
+    const onSearchHero = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatchDisplaySettingState({ type: 'search', payload: e.target.value })
+    }
     return (
         <Grid container>
             <SearchBox
+            onSearchHero={onSearchHero}
                 heroList={heroList}
             />
         </Grid>

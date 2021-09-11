@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { DisplaySetting } from '../../components/DisplaySetting';
 import HeroListDisplay from '../../components/HeroListDisplay';
 
@@ -7,13 +7,28 @@ interface Props {
     data: any
 }
 
+const initialState = {
+    searchKeyWord:'',
+    filterLogic: {},
+    sortLogic:{}
+} 
+const reducer = (action,state) => {
+    switch (action.type){
+        case 'search':
+            return {...state, searchKeyWord:action.payload}
+        case 'filter':
+            return {...state, filterLogic:action.payload}
+    }
+}
 const Heros = ({heroStats}: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const [searchedHero, setSearchHero] = useState('')
+    const [displaySettingState, dispatchDisplaySettingState] = useReducer(reducer, initialState)
+    
     return (
         <>
-            <DisplaySetting heroList={heroStats} />
+            <DisplaySetting dispatchDisplaySettingState={dispatchDisplaySettingState} heroList={heroStats} />
             <HeroListDisplay
                 resHeroStatsData={heroStats}
+                displaySettingState = {displaySettingState}
             />
         </>
     )

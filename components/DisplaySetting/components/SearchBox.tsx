@@ -8,7 +8,8 @@ import { createStyles, alpha, Theme, makeStyles } from '@material-ui/core/styles
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 interface Props {
-    heroList: Array<any>
+  heroList: Array<any>
+  onSearchHero: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      color:'white',
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('sm')]: {
@@ -54,20 +56,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 export default function FreeSolo(props: Props) {
-    const classes = useStyles();
-    return (
-        <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-    );
+  const classes = useStyles();
+  const { onSearchHero } = props
+  return (
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+      <InputBase
+        onChange={onSearchHero}
+        placeholder="Search name..."
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{ 'aria-label': 'search' }}
+      />
+    </div>
+  );
 }

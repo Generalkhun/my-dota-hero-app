@@ -3,8 +3,13 @@ import React from 'react'
 import { map } from 'lodash'
 import Link from 'next/link'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { displaySettingStateType } from '../../types';
+import { adjustHeroDataOnDisplaySetting } from '../../helpers';
+
+
 interface Props {
     resHeroStatsData: Array<any>
+    displaySettingState: displaySettingStateType
 }
 const useStyles = makeStyles((theme: Theme) => createStyles({
     largeAvatar: {
@@ -25,13 +30,17 @@ const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData } = props
     const classes = useStyles();
 
+    
+
+    const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData) // search, filter, sort will effect on the data sequence and occurance
+
     return (
         <Grid container>
             {[...Array(11).keys()].map((colNum) => {
                 return (
                     <Grid key={colNum} item xs={1}>
                         <Paper className={classes.avatarsWrapper}>
-                            {map(resHeroStatsData.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
+                            {map(resHeroStatsDataAdj.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
                                     <Tooltip key={index} title={
                                         <>
