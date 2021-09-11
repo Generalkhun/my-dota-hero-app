@@ -1,3 +1,5 @@
+import { filter, includes, toUpper } from "lodash";
+
 export function setLocalStorage(key, value) {
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
@@ -18,13 +20,21 @@ export function getLocalStorage(key, initialValue) {
 }
 
 
-export const adjustHeroDataOnDisplaySetting = (resHeroStatsData) => {
+export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingState) => {
 
-  let resHeroStatsDataAdjusted = resHeroStatsData
+  console.log('adjustHeroDataOnDisplaySetting: displaySettingState', displaySettingState);
+
+  let resHeroStatsDataAdjusted = resHeroStatsData;
 
   /**
-   * Add logics here sort/filter/search
+   * Add logics sort/filter/search
    */
-  
-  return resHeroStatsDataAdjusted
+
+  // search
+  if (displaySettingState.searchKeyWord !== '') {
+    resHeroStatsDataAdjusted = filter(resHeroStatsData, (herostat) => includes(toUpper(herostat.localized_name), toUpper(displaySettingState.searchKeyWord)))
+  }
+
+
+  return resHeroStatsDataAdjusted || []
 }

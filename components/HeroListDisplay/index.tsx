@@ -15,9 +15,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     largeAvatar: {
         width: theme.spacing(7),
         height: theme.spacing(7),
+        '&:hover': {
+            width: theme.spacing(12),
+            height: theme.spacing(12),
+            zIndex:9999
+        }
     },
     avatarsWrapper: {
-        marginLeft: 20,
+        marginLeft: 0,
         width: '80%',
         backgroundColor: '#2C2E43'
     },
@@ -27,16 +32,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 const HeroListDisplay = (props: Props) => {
-    const { resHeroStatsData } = props
+    const { resHeroStatsData,displaySettingState } = props
     const classes = useStyles();
-
-    const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData) // search, filter, sort will effect on the data sequence and occurance
+    
+    const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData,displaySettingState) // search, filter, sort will effect on the data sequence and occurance
 
     return (
         <Grid container>
             {[...Array(11).keys()].map((colNum) => {
                 return (
-                    <Grid key={colNum} item xs={1}>
+                    <Grid key={colNum} item xs={3} sm={2} md={2} lg={1}>
                         <Paper className={classes.avatarsWrapper}>
                             {map(resHeroStatsDataAdj.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
@@ -47,8 +52,8 @@ const HeroListDisplay = (props: Props) => {
                                             </Link>
                                         </>
                                     } placement='bottom' arrow interactive>
-                                        <ListItem className={classes.listItemDisplay} key={index} >
-                                            <Avatar alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
+                                        <ListItem button className={classes.listItemDisplay} key={index} >
+                                            <Avatar variant='square' alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
                                         </ListItem>
                                     </Tooltip>
                                 )

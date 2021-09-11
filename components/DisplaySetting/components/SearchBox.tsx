@@ -65,7 +65,7 @@ export default function FreeSolo(props: Props) {
       </div>
       <InputBase
         onChange={onSearchHero}
-        placeholder="Search name..."
+        placeholder="Search Name..."
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
