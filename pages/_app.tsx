@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layouts from '../components/Layouts'
 import '../styles/globals.css'
 import { FavoriteHerosProvider } from '../contextProviders/FavoriteHerosProvider'

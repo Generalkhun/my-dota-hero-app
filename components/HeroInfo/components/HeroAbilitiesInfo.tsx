@@ -85,8 +85,6 @@ const useStyles = makeStyles({
 
 const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
     const classes = useStyles()
-    console.log('heroGamesData',heroGamesData);
-    
     return (
         <Paper className={classes.herosAbilitiesInfoWrapper}>
 

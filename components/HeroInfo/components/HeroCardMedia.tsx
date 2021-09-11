@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { FavoriteHerosContext } from '../../../contextProviders/FavoriteHerosProvider';
+import { includes, get } from 'lodash';
 
 const useStyles = makeStyles({
     root: {
@@ -42,12 +43,11 @@ interface Props {
 const HeroCardMedia = ({ heroCardMediaData }: Props) => {
     const classes = useStyles();
     const favHerosContextValue = useContext(FavoriteHerosContext)
-    
-    const onAddFavHeroHandler = (name:string) => {
-        console.log('save',name,'to fav data');
+
+    const onAddFavHeroHandler = (name: string) => {
         favHerosContextValue.addFavheros(name)
-        // updateFavHerosList(heroCardMediaData)
     }
+    const isAlreadyFavOne = includes(get(favHerosContextValue, 'currentFavHeros.favHerosList'), heroCardMediaData.name)
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -74,9 +74,8 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.heroCardActionAdd2FavButton}>
-
-                <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.name)} size="large" color="secondary" startIcon={<FavoriteIcon />}>
-                    ADD TO MY FAVORITE HEROS
+                <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.name)} size="large" color={isAlreadyFavOne ? "primary" : "secondary"} startIcon={<FavoriteIcon />}>
+                    {isAlreadyFavOne ? 'ALREADY ON YOUR FAVORITE LIST' : 'ADD TO MY FAVORITE HEROS'}
                 </Button>
             </CardActions>
         </Card>

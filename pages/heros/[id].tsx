@@ -32,9 +32,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const resHeroStats = await fetch('https://api.opendota.com/api/heroStats')
     const heroStats = await resHeroStats.json()
 
-    console.log('getStaticPaths', heroStats);
-
-
     // Get the paths we want to pre-render based on posts
     const paths = heroStats.map((heroStat) => ({
         params: { id: heroStat.id.toString() },

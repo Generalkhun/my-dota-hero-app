@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DisplaySetting } from '../../components/DisplaySetting';
 import HeroListDisplay from '../../components/HeroListDisplay';
 
@@ -7,7 +7,7 @@ interface Props {
     data: any
 }
 
-const Heros = ({ heroStats }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Heros = ({heroStats}: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [searchedHero, setSearchHero] = useState('')
     return (
         <>
