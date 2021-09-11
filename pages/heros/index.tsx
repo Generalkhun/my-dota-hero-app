@@ -12,7 +12,7 @@ const initialState = {
     filterLogic: {},
     sortLogic:{}
 } 
-const reducer = (action,state) => {
+const reducer = (state,action:any) => {
     switch (action.type){
         case 'search':
             return {...state, searchKeyWord:action.payload}

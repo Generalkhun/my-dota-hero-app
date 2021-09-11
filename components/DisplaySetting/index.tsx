@@ -10,6 +10,8 @@ interface Props {
 export const DisplaySetting = (props: Props) => {
     const { heroList, dispatchDisplaySettingState } = props
     const onSearchHero = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('e.target.value',e.target.value);
+        
         dispatchDisplaySettingState({ type: 'search', payload: e.target.value })
     }
     return (

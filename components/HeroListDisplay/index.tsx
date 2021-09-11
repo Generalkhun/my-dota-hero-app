@@ -30,8 +30,6 @@ const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData } = props
     const classes = useStyles();
 
-    
-
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData) // search, filter, sort will effect on the data sequence and occurance
 
     return (
