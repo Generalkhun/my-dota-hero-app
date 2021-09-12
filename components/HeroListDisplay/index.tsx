@@ -58,7 +58,11 @@ const HeroListDisplay = (props: Props) => {
                                                         horizontal: 'left',
                                                     }}
                                                     badgeContent={(index + 1) + (colNum * 11)}
-                                                    color={includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary' : "primary"}
+                                                    color={
+                                                        includes([...Array(15).keys()], parseInt((index + 1) + (colNum * 11))) ? (
+                                                            includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary'  : 'error'
+                                                        ) : 'primary'
+                                                    }
                                                     max={200}
                                                 >
                                                     <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
