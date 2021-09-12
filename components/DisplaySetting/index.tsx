@@ -26,7 +26,7 @@ export const DisplaySetting = (props: Props) => {
         dispatchDisplaySettingState({ type: 'sort', payload: e.target.value })
     }
     return (
-        <Grid container>
+        <Grid container style={{marginTop:10,paddingBottom:10}}>
             <Grid item xs={10} lg={4}>
                 <SearchBox
                     onSearchHero={onSearchHero}
