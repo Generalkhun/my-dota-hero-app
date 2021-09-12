@@ -8,7 +8,6 @@ import { createStyles, alpha, Theme, makeStyles } from '@material-ui/core/styles
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 interface Props {
-  heroList: Array<any>
   onSearchHero: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,15 +46,15 @@ const useStyles = makeStyles((theme: Theme) =>
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('sm')]: {
-        width: '12ch',
+        width: '37ch',
         '&:focus': {
-          width: '20ch',
+          width: '37ch',
         },
       },
     },
   }),
 );
-export default function FreeSolo(props: Props) {
+export default function SearchBox(props: Props) {
   const classes = useStyles();
   const { onSearchHero } = props
   return (
@@ -65,7 +64,7 @@ export default function FreeSolo(props: Props) {
       </div>
       <InputBase
         onChange={onSearchHero}
-        placeholder="Search Name..."
+        placeholder="Search..."
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
