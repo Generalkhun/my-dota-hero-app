@@ -21,7 +21,7 @@ const reducer = (state, action: any) => {
         case 'filterRole':
             return { ...state, filterRoleLogic: action.payload }
         case 'sort':
-            return { ...state, filterLogic: action.payload }
+            return { ...state, sortLogic: action.payload }
 
         default:
             return state

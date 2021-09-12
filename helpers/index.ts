@@ -1,4 +1,4 @@
-import { filter, includes, toUpper, get, reduce, isEmpty } from "lodash";
+import { filter, includes, toUpper, get, reduce, isEmpty, orderBy } from "lodash";
 
 export function setLocalStorage(key, value) {
   try {
@@ -21,9 +21,6 @@ export function getLocalStorage(key, initialValue) {
 
 // Use to adjust new sequence of hero data before displaying
 export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingState) => {
-
-  console.log('adjustHeroDataOnDisplaySetting: displaySettingState', displaySettingState);
-
   let resHeroStatsDataAdjusted = resHeroStatsData;
 
   /**
@@ -52,14 +49,26 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
         followFilterRoleLogic = filterRoleLogic[role]
       })
       if (followFilterRoleLogic) {
-        return [ ...carry, current ]
+        return [...carry, current]
       }
       return carry
     }), [])
   }
 
-console.log('result',resHeroStatsDataAdjusted);
-
-
+  // ranked (sort)
+  const sortLogic = get(displaySettingState, 'sortLogic')
+  if (!isEmpty(sortLogic)) {
+    if (sortLogic === 'Alphabetic') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['localized_name'], ['asc'])
+    } else if (sortLogic === 'Pro Win') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['pro_win'], ['desc'])
+    } else if (sortLogic === 'Turbo Win') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['turbo_wins'], ['desc'])
+    } else if (sortLogic === 'Movement Speed') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['move_speed'], ['desc'])
+    } else if (sortLogic === 'Attack Range') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['attack_range'], ['desc'])
+    }
+  }
   return resHeroStatsDataAdjusted || []
 }

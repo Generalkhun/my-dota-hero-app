@@ -14,8 +14,8 @@ const SortBox = ({ onSortHero }: Props) => {
 
     const options = [
         'Alphabetic',
-        'Pro Win Rate',
-        'Turbo Win Rate',
+        'Pro Win',
+        'Turbo Win',
         'Movement Speed',
         'Attack Range'
     ];
@@ -36,7 +36,7 @@ const SortBox = ({ onSortHero }: Props) => {
         <div style={{marginLeft:20}}>
             <IconButton aria-label="delete" onClick={handleClick}>
                 <SortIcon fontSize='small' style={{ color: selectedIndex === 0 ? 'white':'yellow' }} />
-                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Ranking By '+options[selectedIndex]}</Typography>
+                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Ranked By '+options[selectedIndex]}</Typography>
             </IconButton>
             <Menu
                 id="simple-menu"
