@@ -17,9 +17,13 @@ export const DisplaySetting = (props: Props) => {
         console.log('e.target.value', e.target.value);
         dispatchDisplaySettingState({ type: 'search', payload: e.target.value })
     }
-    const onFilterHero = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onFilterHeroAttr = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('e.target.value', e.target.value);
-        dispatchDisplaySettingState({ type: 'filter', payload: e.target.value })
+        dispatchDisplaySettingState({ type: 'filterAttr', payload: e.target.value })
+    }
+    const onFilterHeroRole = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('e.target.value', e.target.value);
+        dispatchDisplaySettingState({ type: 'filterRole', payload: e.target.value })
     }
     const onSortHero = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('e.target.value', e.target.value);
@@ -32,12 +36,13 @@ export const DisplaySetting = (props: Props) => {
                     onSearchHero={onSearchHero}
                 />
             </Grid>
-            <Grid item xs={10} lg={4}>
+            <Grid item xs={10} lg={7}>
                 <FilterBox
-                    onFilterHero={onFilterHero}
+                    onFilterHeroAttr={onFilterHeroAttr}
+                    onFilterHeroRole={onFilterHeroRole}
                 />
             </Grid>
-            <Grid item xs={10} lg={4}>
+            <Grid item xs={10} lg={1}>
                 <SortBox
                     onSortHero={onSortHero}
                 />

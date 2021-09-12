@@ -6,7 +6,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles({
     root: {
-        width: '100%',
+        width: '50%',
         height: 40,
         borderRadius: 4,
         backgroundColor: 'black'
@@ -18,15 +18,16 @@ const useStyles = makeStyles({
 
 
 interface Props {
-    onFilterHero: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroAttr: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function LabelBottomNavigation({ onFilterHero }) {
+const BaseAttrFiltering = ({ onFilterHeroAttr }) => {
     const classes = useStyles();
     const [value, setValue] = React.useState('recents');
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setValue(newValue);
+        onFilterHeroAttr(newValue)
     };
 
     return (
@@ -35,7 +36,9 @@ export default function LabelBottomNavigation({ onFilterHero }) {
             <BottomNavigationAction label="INT" value="int" style={{ color: 'white'}} icon={<img height='25' src='https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png'/>} />
             <BottomNavigationAction label="STR" value="str" style={{ color: 'white' }} icon={<img height='25' src='https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png'/>} />
             <BottomNavigationAction label="AGI" value="agi" style={{ color: 'white' }} icon={<img height='25' src='https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png'/>} />
-            
         </BottomNavigation>
     );
 }
+
+
+export default BaseAttrFiltering

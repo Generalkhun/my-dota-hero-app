@@ -1,27 +1,27 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
 import BaseAttrFiltering from './components/BaseAttrFiltering'
-import BaseAttrRadioFiltering from './components/BaseAttrRadioFiltering'
-import RolesDropDownFiltering from './components/RolesDropDownFiltering'
+import RolesFiltering from './components/RolesFiltering'
 
 interface Props {
-    onFilterHero: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroAttr: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroRole: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FilterBox = (props: Props) => {
-    const { onFilterHero } = props
+    const { onFilterHeroAttr, onFilterHeroRole } = props
 
     return (
         <div>
-            <Grid container style={{marginLeft:20}} >
-                <Grid item sm={12} lg={10}>
+            <Grid container spacing={10} style={{ marginLeft: 100 }} >
+                <Grid item xs={12} lg={3} style={{height:20}}>
                     <BaseAttrFiltering
-                        onFilterHero={onFilterHero}
+                        onFilterHeroAttr={onFilterHeroAttr}
                     />
                 </Grid>
-                <Grid item sm={12} lg={6}>
-                    <RolesDropDownFiltering
-                        onFilterHero={onFilterHero}
+                <Grid item xs={12} lg={7} style={{height:20}}>
+                    <RolesFiltering
+                        onFilterHeroRole={onFilterHeroRole}
                     />
                 </Grid>
             </Grid>
