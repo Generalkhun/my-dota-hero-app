@@ -17,9 +17,9 @@ export const DisplaySetting = (props: Props) => {
         console.log('e.target.value', e.target.value);
         dispatchDisplaySettingState({ type: 'search', payload: e.target.value })
     }
-    const onFilterHeroAttr = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('e.target.value', e.target.value);
-        dispatchDisplaySettingState({ type: 'filterAttr', payload: e.target.value })
+    const onFilterHeroAttr = (newValue:string) => {
+        console.log('newValue', newValue);
+        dispatchDisplaySettingState({ type: 'filterAttr', payload: newValue })
     }
     const onFilterHeroRole = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('e.target.value', e.target.value);
@@ -31,7 +31,7 @@ export const DisplaySetting = (props: Props) => {
     }
     return (
         <Grid container style={{marginTop:10,paddingBottom:10}}>
-            <Grid item xs={10} lg={4}>
+            <Grid item xs={10} lg={2}>
                 <SearchBox
                     onSearchHero={onSearchHero}
                 />

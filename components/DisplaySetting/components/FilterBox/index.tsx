@@ -4,7 +4,7 @@ import BaseAttrFiltering from './components/BaseAttrFiltering'
 import RolesFiltering from './components/RolesFiltering'
 
 interface Props {
-    onFilterHeroAttr: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroAttr: (newValue:string) => void
     onFilterHeroRole: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 

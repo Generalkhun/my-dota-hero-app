@@ -1,4 +1,4 @@
-import { filter, includes, toUpper } from "lodash";
+import { filter, includes, toUpper,get } from "lodash";
 
 export function setLocalStorage(key, value) {
   try {
@@ -31,7 +31,8 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
    */
 
   // search
-  if (displaySettingState.searchKeyWord !== '') {
+  const searchKeyWord = get(displaySettingState,'searchKeyWord')
+  if (searchKeyWord && searchKeyWord !== '') {
     resHeroStatsDataAdjusted = filter(resHeroStatsData, (herostat) => includes(toUpper(herostat.localized_name), toUpper(displaySettingState.searchKeyWord)))
   }
 

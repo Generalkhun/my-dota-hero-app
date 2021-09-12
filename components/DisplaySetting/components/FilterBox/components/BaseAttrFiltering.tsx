@@ -18,12 +18,12 @@ const useStyles = makeStyles({
 
 
 interface Props {
-    onFilterHeroAttr: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroAttr: (newValue:string) => void
 }
 
 const BaseAttrFiltering = ({ onFilterHeroAttr }) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState('recents');
+    const [value, setValue] = React.useState('all');
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setValue(newValue);
