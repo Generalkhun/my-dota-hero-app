@@ -7,12 +7,22 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 const useStyles = makeStyles((theme) => ({
     root: {
         [theme.breakpoints.up('lg')]: {
-            height: 100,
+            
             marginLeft:80,
             paddingBottom:40
         },
+        [theme.breakpoints.down('lg')]: {
+            marginTop:20,
+            paddingBottom:40
+        },
+        [theme.breakpoints.down('lg')]: {
+            marginTop:20,
+            marginLeft:80,
+            paddingBottom:40
+        },
+        
         width: '50%',
-        height: 40,
+        height: 100,
         borderRadius: 4,
         backgroundColor: 'black'
     },
