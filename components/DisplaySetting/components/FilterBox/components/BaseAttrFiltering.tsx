@@ -7,22 +7,22 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 const useStyles = makeStyles((theme) => ({
     root: {
         [theme.breakpoints.up('lg')]: {
-            
-            marginLeft:80,
-            paddingBottom:40
+            marginLeft:100,
+            paddingBottom:50,
+            width: 40,
+            height: 100,
         },
         [theme.breakpoints.down('lg')]: {
-            marginTop:20,
-            paddingBottom:40
+            width: 40, 
         },
-        [theme.breakpoints.down('lg')]: {
-            marginTop:20,
-            marginLeft:80,
-            paddingBottom:40
+        [theme.breakpoints.down('md')]: {
+            marginTop:60,
+            marginLeft:110,
+            width: 40,
         },
-        
-        width: '50%',
-        height: 100,
+        [theme.breakpoints.down('xs')]: {
+            marginTop:80,
+        },
         borderRadius: 4,
         backgroundColor: 'black'
     },
@@ -36,7 +36,7 @@ interface Props {
     onFilterHeroAttr: (newValue:string) => void
 }
 
-const BaseAttrFiltering = ({ onFilterHeroAttr }) => {
+const BaseAttrFiltering = ({ onFilterHeroAttr }:Props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState('all');
 

@@ -10,11 +10,19 @@ interface Props {
 }
 const useStyles = makeStyles((theme) => ({
     settingDisplayWarpper: {
+        marginTop:20,
+        [theme.breakpoints.up('lg')]: {
+            height: 100,
+            marginLeft:60
+        },
         [theme.breakpoints.down('lg')]: {
             height: 100,
+            marginLeft:60
+            
         },
         [theme.breakpoints.down('md')]: {
             height: 250,
+            marginLeft:20
         },
         [theme.breakpoints.down('sm')]: {
             height: 300,
@@ -35,9 +43,6 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     sortWarpper: {
-        [theme.breakpoints.down('lg')]: {
-
-        }
     }
 }))
 export const DisplaySetting = (props: Props) => {
@@ -60,7 +65,7 @@ export const DisplaySetting = (props: Props) => {
         dispatchDisplaySettingState({ type: 'sort', payload: sortingTopic })
     }
     return (
-        <Grid container className={classes.settingDisplayWarpper} style={{ marginTop: 10, paddingBottom: 10 }}>
+        <Grid container className={classes.settingDisplayWarpper}>
             <Grid item xs={10} sm={6} md={2} lg={2}>
                 <SearchBox
                     onSearchHero={onSearchHero}

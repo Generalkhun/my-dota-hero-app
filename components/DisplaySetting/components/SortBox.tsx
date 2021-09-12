@@ -1,13 +1,21 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SortIcon from '@material-ui/icons/Sort';
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton, Typography, makeStyles } from '@material-ui/core';
 interface Props {
     onSortHero: (sortingTopic: string) => void
 }
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        [theme.breakpoints.down('md')]: {
+            marginLeft: 40
+        },
+    }
+}))
 const SortBox = ({ onSortHero }: Props) => {
+    const classes = useStyles()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -34,10 +42,10 @@ const SortBox = ({ onSortHero }: Props) => {
 
     };
     return (
-        <div>
+        <div className={classes.root}>
             <IconButton aria-label="delete" onClick={handleClick}>
                 <SortIcon fontSize='small' style={{ color: 'white' }} />
-                <Typography style={{ color: 'white' }}>{selectedIndex > 0 ? 'Ranked By ' + options[selectedIndex]:'Not Ranked'}</Typography>
+                <Typography style={{ color: 'white' }}>{selectedIndex > 0 ? 'Ranked By ' + options[selectedIndex] : 'Not Ranked'}</Typography>
             </IconButton>
             <Menu
                 id="simple-menu"

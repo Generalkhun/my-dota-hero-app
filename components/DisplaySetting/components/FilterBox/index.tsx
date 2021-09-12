@@ -28,7 +28,7 @@ const FilterBox = (props: Props) => {
                         onFilterHeroRole={onFilterHeroRole}
                     />
                 </Grid>
-                <Grid item  md={12} lg={5} style={{ height: 20 }}>
+                <Grid item  md={12} lg={5}>
                     <BaseAttrFiltering
                         onFilterHeroAttr={onFilterHeroAttr}
                     />
