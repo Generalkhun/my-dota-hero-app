@@ -5,7 +5,7 @@ import RolesFiltering from './components/RolesFiltering'
 
 interface Props {
     onFilterHeroAttr: (newValue:string) => void
-    onFilterHeroRole: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroRole: (rolesTick: Object) => void
 }
 
 const FilterBox = (props: Props) => {

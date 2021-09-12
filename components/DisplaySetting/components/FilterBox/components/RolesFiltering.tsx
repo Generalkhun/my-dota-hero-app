@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface Props {
-    onFilterHeroRole: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFilterHeroRole: (rolesTick: Object) => void
 }
-const RolesFiltering = (props: Props) => {
+const RolesFiltering = ({onFilterHeroRole}: Props) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
         Carry: true,
@@ -43,10 +43,11 @@ const RolesFiltering = (props: Props) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, [event.target.name]: event.target.checked });
+        onFilterHeroRole({ ...state, [event.target.name]: event.target.checked })
     };
 
     const { Carry, Escape, Nuker, Initiator, Durable, Disabler, Support, Pusher } = state;
-    
+
     return (
         <Grid container className={classes.root}>
             <Grid item lg={3}>

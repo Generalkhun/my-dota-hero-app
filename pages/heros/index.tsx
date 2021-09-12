@@ -8,28 +8,35 @@ interface Props {
 }
 
 const initialState = {
-    searchKeyWord:'',
+    searchKeyWord: '',
     filterLogic: {},
-    sortLogic:{}
-} 
-const reducer = (state,action:any) => {
-    switch (action.type){
+    sortLogic: {}
+}
+const reducer = (state, action: any) => {
+    switch (action.type) {
         case 'search':
-            return {...state, searchKeyWord:action.payload}
-        case 'filter':
-            return {...state, filterLogic:action.payload}
+            return { ...state, searchKeyWord: action.payload }
+        case 'filterAttr':
+            return { ...state, filterAttrLogic: action.payload }
+        case 'filterRole':
+            return { ...state, filterRoleLogic: action.payload }
+        case 'sort':
+            return { ...state, filterLogic: action.payload }
+
+        default:
+            return state
     }
 }
-const Heros = ({heroStats}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Heros = ({ heroStats }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [displaySettingState, dispatchDisplaySettingState] = useReducer(reducer, initialState)
-    console.log('heroStats',heroStats);
-    
+    console.log('heroStats', heroStats);
+
     return (
         <>
             <DisplaySetting dispatchDisplaySettingState={dispatchDisplaySettingState} heroList={heroStats} />
             <HeroListDisplay
                 resHeroStatsData={heroStats}
-                displaySettingState = {displaySettingState}
+                displaySettingState={displaySettingState}
             />
         </>
     )
