@@ -58,6 +58,9 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
   // ranked (sort)
   const sortLogic = get(displaySettingState, 'sortLogic')
   if (!isEmpty(sortLogic)) {
+    if (sortLogic === 'None') {
+      resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['id'], ['asc'])
+    }
     if (sortLogic === 'Alphabetic') {
       resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['localized_name'], ['asc'])
     } else if (sortLogic === 'Pro Win') {

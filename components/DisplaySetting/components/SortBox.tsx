@@ -5,14 +5,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import SortIcon from '@material-ui/icons/Sort';
 import { IconButton, Typography } from '@material-ui/core';
 interface Props {
-    onSortHero: (sortingTopic:string) => void
+    onSortHero: (sortingTopic: string) => void
 }
 const SortBox = ({ onSortHero }: Props) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const options = [
+        'None',
         'Alphabetic',
         'Pro Win',
         'Turbo Win',
@@ -33,10 +34,10 @@ const SortBox = ({ onSortHero }: Props) => {
 
     };
     return (
-        <div style={{marginLeft:20}}>
+        <div style={{ marginLeft: 20 }}>
             <IconButton aria-label="delete" onClick={handleClick}>
-                <SortIcon fontSize='small' style={{ color: selectedIndex === 0 ? 'white':'yellow' }} />
-                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Ranked By '+options[selectedIndex]}</Typography>
+                <SortIcon fontSize='small' style={{ color: 'white' }} />
+                <Typography style={{ color: 'white' }}>{selectedIndex > 0 ? 'Ranked By ' + options[selectedIndex]:'Not Ranked'}</Typography>
             </IconButton>
             <Menu
                 id="simple-menu"
@@ -44,6 +45,7 @@ const SortBox = ({ onSortHero }: Props) => {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                defaultValue={1}
 
             >
                 {options.map((option, index) => (

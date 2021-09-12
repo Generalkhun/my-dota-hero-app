@@ -1,12 +1,9 @@
-import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, IconButton } from '@material-ui/core';
+import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, IconButton, Badge } from '@material-ui/core';
 import React from 'react'
-import { map } from 'lodash'
+import { map, get, includes } from 'lodash'
 import Link from 'next/link'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { displaySettingStateType } from '../../types';
 import { adjustHeroDataOnDisplaySetting } from '../../helpers';
-
-
 interface Props {
     resHeroStatsData: Array<any>
     displaySettingState: displaySettingStateType
@@ -18,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         '&:hover': {
             width: theme.spacing(12),
             height: theme.spacing(12),
-            zIndex:9999
+            zIndex: 9999
         }
     },
     avatarsWrapper: {
@@ -32,10 +29,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 const HeroListDisplay = (props: Props) => {
-    const { resHeroStatsData,displaySettingState } = props
+    const { resHeroStatsData, displaySettingState } = props
     const classes = useStyles();
-    
-    const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData,displaySettingState) // search, filter, sort will effect on the data sequence and occurance
+
+    const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
 
     return (
         <Grid container>
@@ -53,7 +50,22 @@ const HeroListDisplay = (props: Props) => {
                                         </>
                                     } placement='bottom' arrow interactive>
                                         <ListItem button className={classes.listItemDisplay} key={index} >
-                                            <Avatar variant='square' alt="Hero" src={`http://cdn.dota2.com/${heroStatus.img}`} className={classes.largeAvatar} />
+                                            {get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic' ?
+
+                                                <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge
+                                                    anchorOrigin={{
+                                                        vertical: 'top',
+                                                        horizontal: 'left',
+                                                    }}
+                                                    badgeContent={(index + 1) + (colNum * 11)}
+                                                    color={includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary' : "primary"}
+                                                    max={200}
+                                                >
+                                                    <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
+                                                </Badge>
+
+                                            }
+
                                         </ListItem>
                                     </Tooltip>
                                 )

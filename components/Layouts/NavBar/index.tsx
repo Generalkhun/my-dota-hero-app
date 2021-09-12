@@ -51,7 +51,7 @@ const NavBar = () => {
       <AppBar position="static" style={{ backgroundColor: '#000000' }}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <Link href='./heros'>
+            <Link href='/heros'>
               <img height={50} width={100} src='https://i.pinimg.com/originals/27/ff/39/27ff3902c1363a776c9db6ee6f7d76d8.jpg' />
             </Link>
           </IconButton>
