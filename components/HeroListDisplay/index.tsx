@@ -1,6 +1,6 @@
-import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, IconButton, Badge } from '@material-ui/core';
+import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, Button, Badge, withStyles } from '@material-ui/core';
 import React from 'react'
-import { map, get, includes } from 'lodash'
+import { map, get, includes, isEmpty } from 'lodash'
 import Link from 'next/link'
 import { displaySettingStateType } from '../../types';
 import { adjustHeroDataOnDisplaySetting } from '../../helpers';
@@ -12,11 +12,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     largeAvatar: {
         width: theme.spacing(7),
         height: theme.spacing(7),
-        '&:hover': {
-            width: theme.spacing(12),
-            height: theme.spacing(12),
-            zIndex: 9999
-        }
     },
     displayWrapper: {
         [theme.breakpoints.down('xl')]: {
@@ -46,11 +41,31 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     }
 }));
 
+
+/**
+ * @TODO style tooltip
+ */
+const StyledTooltip = withStyles({
+    tooltipPlacementTop: {
+        margin: "0 0 0 0",
+    },
+    tooltipPlacementRight: {
+        margin: "4px",
+    },
+    tooltipPlacementLeft: {
+        margin: "0 0 0 0",
+    },
+})(Tooltip);
+
 const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData, displaySettingState } = props
     const classes = useStyles();
 
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
+    console.log('displaySettingState', displaySettingState);
+    const isShowBadge = (!isEmpty(get(displaySettingState, 'sortLogic'))) && (get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic') // show badge logic
+    console.log('isShowBadge', isShowBadge);
+
     return (
         <Grid container className={classes.displayWrapper}>
             {[...Array(11).keys()].map((colNum) => {
@@ -59,16 +74,15 @@ const HeroListDisplay = (props: Props) => {
                         <Paper className={classes.avatarsWrapper}>
                             {map(resHeroStatsDataAdj.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
-                                    <Tooltip key={index} title={
+                                    <StyledTooltip key={index} title={
                                         <>
                                             <Link href={`heros/${heroStatus.id}`}>
-                                                {heroStatus.localized_name + " ⇨"}
+                                                <Button>{heroStatus.localized_name + " ⇨"}</Button>
                                             </Link>
                                         </>
-                                    } placement='bottom' arrow interactive>
-                                        <ListItem button className={classes.listItemDisplay} key={index} >
-                                            {get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic' ?
-
+                                    } placement='right' arrow interactive>
+                                        <ListItem className={classes.listItemDisplay} key={index} >
+                                            {isShowBadge ?
                                                 <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge
                                                     anchorOrigin={{
                                                         vertical: 'top',
@@ -87,7 +101,7 @@ const HeroListDisplay = (props: Props) => {
                                             }
 
                                         </ListItem>
-                                    </Tooltip>
+                                    </StyledTooltip>
                                 )
                             }
                             )}
