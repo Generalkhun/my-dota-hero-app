@@ -7,13 +7,13 @@ import { IconButton, Typography } from '@material-ui/core';
 interface Props {
     onSortHero: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
-const SortBox = ({onSortHero}:Props) => {
+const SortBox = ({ onSortHero }: Props) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
     const options = [
-        'No Sort',
+        'Alphabetic',
         'Win rate',
         'Movement Speed',
     ];
@@ -24,16 +24,16 @@ const SortBox = ({onSortHero}:Props) => {
     const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
         setSelectedIndex(index);
         setAnchorEl(null);
-      };
+    };
     const handleClose = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAnchorEl(null);
 
     };
     return (
-        <div>
+        <div style={{marginLeft:20}}>
             <IconButton aria-label="delete" onClick={handleClick}>
-                <Typography style={{ color: 'white' }}>{selectedIndex === 0? '': options[selectedIndex]}</Typography>
-                <SortIcon fontSize={selectedIndex === 0 ? "large" : 'small'} style={{ color: 'white' }} />
+                <SortIcon fontSize='small' style={{ color: selectedIndex === 0 ? 'white':'yellow' }} />
+                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Sort By '+options[selectedIndex]}</Typography>
             </IconButton>
             <Menu
                 id="simple-menu"

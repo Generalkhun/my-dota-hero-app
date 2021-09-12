@@ -42,7 +42,7 @@ export const DisplaySetting = (props: Props) => {
                     onFilterHeroRole={onFilterHeroRole}
                 />
             </Grid>
-            <Grid item xs={10} lg={1}>
+            <Grid item xs={10} lg={3}>
                 <SortBox
                     onSortHero={onSortHero}
                 />
