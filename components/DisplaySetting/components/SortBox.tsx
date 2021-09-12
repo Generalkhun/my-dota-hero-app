@@ -14,8 +14,10 @@ const SortBox = ({ onSortHero }: Props) => {
 
     const options = [
         'Alphabetic',
-        'Win rate',
+        'Pro Win Rate',
+        'Turbo Win Rate',
         'Movement Speed',
+        'Attack Range'
     ];
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +35,7 @@ const SortBox = ({ onSortHero }: Props) => {
         <div style={{marginLeft:20}}>
             <IconButton aria-label="delete" onClick={handleClick}>
                 <SortIcon fontSize='small' style={{ color: selectedIndex === 0 ? 'white':'yellow' }} />
-                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Sort By '+options[selectedIndex]}</Typography>
+                <Typography style={{ color: selectedIndex === 0 ? 'white':'yellow' }}>{'Rank By '+options[selectedIndex]}</Typography>
             </IconButton>
             <Menu
                 id="simple-menu"

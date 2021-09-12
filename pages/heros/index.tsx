@@ -22,6 +22,7 @@ const reducer = (state,action:any) => {
 }
 const Heros = ({heroStats}: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [displaySettingState, dispatchDisplaySettingState] = useReducer(reducer, initialState)
+    console.log('heroStats',heroStats);
     
     return (
         <>
