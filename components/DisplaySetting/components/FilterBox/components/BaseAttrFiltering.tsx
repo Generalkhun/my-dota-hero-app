@@ -4,8 +4,13 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
+        [theme.breakpoints.up('lg')]: {
+            height: 100,
+            marginLeft:80,
+            paddingBottom:40
+        },
         width: '50%',
         height: 40,
         borderRadius: 4,
@@ -14,7 +19,7 @@ const useStyles = makeStyles({
     attrChooseLabel: {
         color:'white',
     }
-});
+}));
 
 
 interface Props {

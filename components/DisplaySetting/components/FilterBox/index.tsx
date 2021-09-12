@@ -7,21 +7,28 @@ interface Props {
     onFilterHeroAttr: (newValue: string) => void
     onFilterHeroRole: (rolesTick: Object) => void
 }
-const useStyles = makeStyles({
-
-})
+const useStyles = makeStyles((theme) => ({
+    roleFilteringWrapper:{
+        [theme.breakpoints.up('lg')]: {
+            paddingRight: 100,
+        },
+        [theme.breakpoints.down('lg')]: {
+            marginRight:'auto',
+        },
+    }
+}))
 const FilterBox = (props: Props) => {
     const { onFilterHeroAttr, onFilterHeroRole } = props
     const classes = useStyles()
     return (
         <div>
             <Grid container style={{ marginLeft: 20, height: 130 }} >
-                <Grid item xs={12} md={5} style={{ height: 20 }}>
+                <Grid item  md={12} lg={7} style={{ height: 20 }} className={classes.roleFilteringWrapper}>
                     <RolesFiltering
                         onFilterHeroRole={onFilterHeroRole}
                     />
                 </Grid>
-                <Grid item xs={12} md={7} style={{ height: 20 }}>
+                <Grid item  md={12} lg={5} style={{ height: 20 }}>
                     <BaseAttrFiltering
                         onFilterHeroAttr={onFilterHeroAttr}
                     />
