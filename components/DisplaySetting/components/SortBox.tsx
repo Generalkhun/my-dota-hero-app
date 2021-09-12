@@ -34,7 +34,7 @@ const SortBox = ({ onSortHero }: Props) => {
 
     };
     return (
-        <div style={{ marginLeft: 20 }}>
+        <div>
             <IconButton aria-label="delete" onClick={handleClick}>
                 <SortIcon fontSize='small' style={{ color: 'white' }} />
                 <Typography style={{ color: 'white' }}>{selectedIndex > 0 ? 'Ranked By ' + options[selectedIndex]:'Not Ranked'}</Typography>

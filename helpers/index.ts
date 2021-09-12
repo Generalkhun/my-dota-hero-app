@@ -1,4 +1,4 @@
-import { filter, includes, toUpper, get, reduce, isEmpty, orderBy } from "lodash";
+import { filter, includes, toUpper, get, reduce, isEmpty, orderBy, xor } from "lodash";
 
 export function setLocalStorage(key, value) {
   try {
@@ -43,12 +43,20 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
   //filter by roles
   const filterRoleLogic = get(displaySettingState, 'filterRoleLogic')
   if (!isEmpty(filterRoleLogic)) {
+
+    // Create an array of roles to compare with hero stats array
+    const filterRoleLogicArray = reduce(Object.keys(filterRoleLogic), ((carry, current) => {
+      if (filterRoleLogic[current]) {
+        return [...carry, current]
+      }
+      return carry
+
+    }), [])
+
+    // add heros that share some roles with the array
     resHeroStatsDataAdjusted = reduce(resHeroStatsDataAdjusted, ((carry, current) => {
-      let followFilterRoleLogic = false
-      current.roles.forEach(role => {
-        followFilterRoleLogic = filterRoleLogic[role]
-      })
-      if (followFilterRoleLogic) {
+      filterRoleLogicArray.some(item => current.roles.includes(item))
+      if (haveCommonElements(filterRoleLogicArray, current.roles)) {
         return [...carry, current]
       }
       return carry
@@ -73,5 +81,12 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
       resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['attack_range'], ['desc'])
     }
   }
+  console.log('resHeroStatsDataAdjusted', resHeroStatsDataAdjusted);
+
   return resHeroStatsDataAdjusted || []
+}
+
+
+const haveCommonElements = (arr1, arr2) => {
+  return arr1.some(item => arr2.includes(item))
 }

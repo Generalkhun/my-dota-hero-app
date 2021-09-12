@@ -6,7 +6,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Grid, Typography } from '@material-ui/core';
+import { Collapse, Grid, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
+
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         roleName: {
             color: 'white'
+        },
+        formCheckBoxWrapper: {
+            paddingBottom: 20,
         }
     }),
 );
@@ -27,8 +33,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
     onFilterHeroRole: (rolesTick: Object) => void
 }
-const RolesFiltering = ({onFilterHeroRole}: Props) => {
+const RolesFiltering = ({ onFilterHeroRole }: Props) => {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+
+
     const [state, setState] = React.useState({
         Carry: true,
         Escape: true,
@@ -40,6 +49,9 @@ const RolesFiltering = ({onFilterHeroRole}: Props) => {
         Pusher: true,
 
     });
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -50,79 +62,149 @@ const RolesFiltering = ({onFilterHeroRole}: Props) => {
 
     return (
         <Grid container className={classes.root}>
-            <Grid item lg={3}>
-                <FormControlLabel
-                    style={{ color: 'white', height: 10, paddingBottom: 10 }}
-                    control={<Checkbox checked={Carry} onChange={handleChange} name="Carry" />}
-                    label="Carry"
+            <Grid item lg={12}>
+                    <Grid container>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Carry} onChange={handleChange} name="Carry" />}
+                                label="Carry"
 
-                />
-                <FormControlLabel
-                    style={{ color: 'white', height: 10 }}
-                    control={<Checkbox checked={Escape} onChange={handleChange} name="Escape" />}
-                    label="Escape"
-                />
-            </Grid>
-            <Grid item lg={3}>
-                <FormControlLabel
-                    style={{ color: 'white', height: 10, paddingBottom: 10 }}
-                    control={<Checkbox checked={Nuker} onChange={handleChange} name="Nuker" />}
-                    label="Nuker"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Escape} onChange={handleChange} name="Escape" />}
+                                label="Escape"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Nuker} onChange={handleChange} name="Nuker" />}
+                                label="Nuker"
 
-                />
-                <FormControlLabel
-                    style={{ color: 'white', height: 10 }}
-                    control={<Checkbox checked={Initiator} onChange={handleChange} name="Initiator" />}
-                    label="Initiator"
-                />
-            </Grid>
-            <Grid item lg={3}>
-                <FormControlLabel
-                    style={{ color: 'white', height: 10, paddingBottom: 10 }}
-                    control={<Checkbox checked={Durable} onChange={handleChange} name="Durable" />}
-                    label="Durable"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Initiator} onChange={handleChange} name="Initiator" />}
+                                label="Initiator"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Durable} onChange={handleChange} name="Durable" />}
+                                label="Durable"
 
-                />
-                <FormControlLabel
-                    style={{ color: 'white', height: 10 }}
-                    control={<Checkbox checked={Disabler} onChange={handleChange} name="Disabler" />}
-                    label="Disabler"
-                />
-            </Grid>
-            <Grid item lg={3}>
-                <FormControlLabel
-                    style={{ color: 'white', height: 10, paddingBottom: 10 }}
-                    control={<Checkbox checked={Support} onChange={handleChange} name="Support" />}
-                    label="Support"
+                            />
+                        </Grid>
+                        <Grid item xs={3}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Disabler} onChange={handleChange} name="Disabler" />}
+                                label="Disabler"
+                            />
 
-                />
-                <FormControlLabel
-                    style={{ color: 'white', height: 10 }}
-                    control={<Checkbox checked={Pusher} onChange={handleChange} name="Pusher" />}
-                    label="Pusher"
-                />
-            </Grid>
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Support} onChange={handleChange} name="Support" />}
+                                label="Support"
 
-            {/* <FormControl component="fieldset" className={classes.formControl}>
-                <FormGroup>
-                    <FormControlLabel
-                        style={{ color: 'white' }}
-                        control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-                        label="Gilad Gray"
-                    />
-                    <FormControlLabel
-                        style={{ color: 'white' }}
-                        control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-                        label="Jason Killian"
-                    />
-                    <FormControlLabel
-                        style={{ color: 'white' }}
-                        control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-                        label="Antoine Llorca"
-                    />
-                </FormGroup>
-                <FormHelperText>Be careful</FormHelperText>
-            </FormControl> */}
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10 }}
+                                control={<Checkbox checked={Pusher} onChange={handleChange} name="Pusher" />}
+                                label="Pusher"
+                            />
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            <ListItem button onClick={handleClick}>
+                <ListItemIcon>
+                    <FilterListIcon style={{ color: 'white' }} />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                {/* <Grid item lg={12}>
+                    <Grid container>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Carry} onChange={handleChange} name="Carry" />}
+                                label="Carry"
+
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Escape} onChange={handleChange} name="Escape" />}
+                                label="Escape"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Nuker} onChange={handleChange} name="Nuker" />}
+                                label="Nuker"
+
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Initiator} onChange={handleChange} name="Initiator" />}
+                                label="Initiator"
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Durable} onChange={handleChange} name="Durable" />}
+                                label="Durable"
+
+                            />
+                        </Grid>
+                        <Grid item xs={3}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Disabler} onChange={handleChange} name="Disabler" />}
+                                label="Disabler"
+                            />
+
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10, paddingRight: 20 }}
+                                control={<Checkbox checked={Support} onChange={handleChange} name="Support" />}
+                                label="Support"
+
+                            />
+                        </Grid>
+                        <Grid item xs={3} className={classes.formCheckBoxWrapper}>
+                            <FormControlLabel
+                                style={{ color: 'white', height: 10 }}
+                                control={<Checkbox checked={Pusher} onChange={handleChange} name="Pusher" />}
+                                label="Pusher"
+                            />
+                        </Grid>
+                    </Grid>
+
+                </Grid> */}
+            </Collapse>
+
+
 
         </Grid>
     );
