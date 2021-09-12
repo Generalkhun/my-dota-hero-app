@@ -18,6 +18,24 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
             zIndex: 9999
         }
     },
+    displayWrapper: {
+        [theme.breakpoints.down('xl')]: {
+            marginLeft: 80
+        },
+        [theme.breakpoints.down('xl')]: {
+            marginLeft: 70
+        },
+        [theme.breakpoints.down('md')]: {
+            marginLeft: 30
+
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 20
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 10
+        },
+    },
     avatarsWrapper: {
         marginLeft: 0,
         width: '80%',
@@ -33,9 +51,8 @@ const HeroListDisplay = (props: Props) => {
     const classes = useStyles();
 
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
-
     return (
-        <Grid container>
+        <Grid container className={classes.displayWrapper}>
             {[...Array(11).keys()].map((colNum) => {
                 return (
                     <Grid key={colNum} item xs={3} sm={2} md={2} lg={1}>
@@ -60,14 +77,13 @@ const HeroListDisplay = (props: Props) => {
                                                     badgeContent={(index + 1) + (colNum * 11)}
                                                     color={
                                                         includes([...Array(15).keys()], parseInt((index + 1) + (colNum * 11))) ? (
-                                                            includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary'  : 'error'
+                                                            includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary' : 'error'
                                                         ) : 'primary'
                                                     }
                                                     max={200}
                                                 >
                                                     <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
                                                 </Badge>
-
                                             }
 
                                         </ListItem>

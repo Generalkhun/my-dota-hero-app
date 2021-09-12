@@ -1,21 +1,16 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Collapse, Grid, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
-
-import FilterListIcon from '@material-ui/icons/FilterList';
-
+import { Grid } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            height: 20
+            height: 20,
+            [theme.breakpoints.up('lg')]: {
+                marginLeft: 40
+            },
         },
         formControl: {
             margin: theme.spacing(3),

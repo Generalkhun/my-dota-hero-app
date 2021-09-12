@@ -66,18 +66,18 @@ export const DisplaySetting = (props: Props) => {
     }
     return (
         <Grid container className={classes.settingDisplayWarpper}>
-            <Grid item xs={10} sm={6} md={2} lg={2}>
+            <Grid item xs={11} sm={11} md={11} lg={2}>
                 <SearchBox
                     onSearchHero={onSearchHero}
                 />
             </Grid>
-            <Grid item xs={10} sm={12} md={12} lg={8} className={classes.filterWarpper}>
+            <Grid item xs={10} sm={12} md={12} lg={8} xl={7} className={classes.filterWarpper}>
                 <FilterBox
                     onFilterHeroAttr={onFilterHeroAttr}
                     onFilterHeroRole={onFilterHeroRole}
                 />
             </Grid>
-            <Grid item xs={10} md={3} lg={2} className={classes.sortWarpper}>
+            <Grid item xs={10} md={3} lg={2} xl={2} className={classes.sortWarpper}>
                 <SortBox
                     onSortHero={onSortHero}
                 />
