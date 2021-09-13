@@ -7,5 +7,6 @@
     background-color:black;
     height: 93vh;
     opacity: 0.85;
+    overflow: scroll;
     /* mix-blend-mode: multiply; */
 }
