@@ -56,8 +56,7 @@ const HeroListDisplay = (props: Props) => {
     const classes = useStyles();
 
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
-    const isShowBadge = (!isEmpty(get(displaySettingState, 'sortLogic'))) && (get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic') // show badge logic
-    console.log('isShowBadge', isShowBadge);
+    const isNotShowBadge = isEmpty(get(displaySettingState, 'sortLogic')) || get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic' // show badge logic
 
     return (
         <Grid container className={classes.displayWrapper}>
@@ -73,8 +72,8 @@ const HeroListDisplay = (props: Props) => {
 
                                         <ListItem className={classes.listItemDisplay} key={index} >
                                             <Link href={`heros/${heroStatus.id}`}>
-                                                {isShowBadge ?
-                                                    <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge
+                                                {isNotShowBadge ? <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> :
+                                                    <Badge
                                                         anchorOrigin={{
                                                             vertical: 'top',
                                                             horizontal: 'left',

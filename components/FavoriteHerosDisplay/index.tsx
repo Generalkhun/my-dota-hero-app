@@ -32,25 +32,26 @@ const FavoriteHerosDisplay = (props: Props) => {
     return (
         <>
             {map(heroStats, (heroStat, index) => {
-                return (includes(favHerosList, heroStat.localized_name) ?
-                    <Grid item xs={4} sm={2} key={index} className={classes.mediaCardWrapper}>
-                        <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={`http://cdn.dota2.com/${heroStat.img}`}
-                                />
+                return (
+                    includes(favHerosList, heroStat.localized_name) ?
+                        <Grid item xs={4} sm={2} key={index} className={classes.mediaCardWrapper}>
+                            <Card className={classes.root}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image={`http://cdn.dota2.com/${heroStat.img}`}
+                                    />
                                     <CardContent className={classes.titleWrapper}>
                                         <Typography style={{ fontFamily: 'Cinzel' }} gutterBottom variant="overline" component="h2">
                                             {' ' + heroStat.localized_name}
                                         </Typography>
                                     </CardContent>
-                            </CardActionArea>
+                                </CardActionArea>
 
 
-                        </Card>
+                            </Card>
 
-                    </Grid> : <></>)
+                        </Grid> : <div key={index}></div>)
             })}
         </>
 
