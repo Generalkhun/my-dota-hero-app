@@ -13,9 +13,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { FavoriteHerosContext } from '../../../contextProviders/FavoriteHerosProvider';
 import { includes, get } from 'lodash';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 400,
+        maxWidth: 400
     },
     media: {
         height: 200,
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center'
     }
-});
+}))
 
 interface heroCardMediaDataType {
     name: string

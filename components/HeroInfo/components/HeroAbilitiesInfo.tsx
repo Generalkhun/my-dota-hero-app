@@ -7,7 +7,7 @@ interface Props {
     heroAbilitiesData: heroAbilitiesDataType
     heroGamesData: heroGamesDataType
 }
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>  ({
     root: {
         maxWidth: 400,
     },
@@ -15,7 +15,22 @@ const useStyles = makeStyles({
         marginLeft: 20,
         width: '100%',
         height: '90vh',
-        backgroundColor: '#444444'
+        backgroundColor: '#444444',
+
+        [theme.breakpoints.down('lg')]:{
+            height: '100%',
+            paddingBottom:10,
+            paddingRight:40
+        },
+        [theme.breakpoints.down('md')]:{
+            height: '100%',
+            paddingBottom:10,
+        },
+        [theme.breakpoints.down('sm')]:{
+            height: '100%',
+            paddingBottom:10
+        }
+
     },
     title: {
         fontSize: 20,
@@ -35,15 +50,14 @@ const useStyles = makeStyles({
         backgroundColor: '#1E212D',
         width: 'auto',
     }
-});
+}));
 
 const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
     const classes = useStyles()
     return (
         <Paper className={classes.herosAbilitiesInfoWrapper}>
-
             <Grid container style={{ marginLeft: 10 }}>
-                <Grid item xs={10} md={6} style={{ marginTop: 10, marginLeft: 15 }}>
+                <Grid item xs={12} sm={12} md={10} lg={6} style={{ marginTop: 10, marginLeft: 15 }}>
                     <Card className={classes.titleWrapper} variant="outlined">
                         <Typography variant='h6' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>△ BASE ATTRIBUTES</Typography>
                     </Card>
@@ -65,8 +79,8 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                             </Grid>
                             <Grid item md={6}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_agi}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_agi}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_agi}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_str}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_int}</Typography>
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_armor}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.base_attack_max}</Typography>
@@ -85,7 +99,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                     </Card>
                     <Card className={classes.contentWrapper} variant="outlined" >
                         <Grid container>
-                            <Grid item md={6}>
+                            <Grid item md={5}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>AGI-GAIN</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>STR-GAIN</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>INT-GAIN</Typography>
@@ -95,8 +109,9 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>CM-ENABLED</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>MOVE-SPEED</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURN-RATE</Typography>
                             </Grid>
-                            <Grid item md={6}>
+                            <Grid item  md={5}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.agi_gain}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.str_gain}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.int_gain}</Typography>
@@ -107,18 +122,19 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.cm_enabled ? '✔' : '✘'}</Typography>
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.move_speed}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.turn_rate}</Typography>
                             </Grid>
                         </Grid>
 
                     </Card>
                 </Grid>
-                <Grid item xs={10} md={5} style={{ marginTop: 10, marginLeft: 20 }}>
+                <Grid item xs={12} sm={12} md={10} lg={5}  style={{ marginTop: 10, marginLeft: 15 }}>
                     <Card className={classes.titleWrapper} variant="outlined">
                         <Typography variant='h6' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>✩ GAMES-STATS</Typography>
                     </Card>
                     <Card className={classes.contentWrapper} variant="outlined">
                         <Grid container>
-                            <Grid item md={6}>
+                            <Grid item md={5}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>1 PICK</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>1 WIN</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>2 PICK</Typography>
@@ -143,25 +159,25 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>PRO-WIN</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURBO-PICKS</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURBO-WINS</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURN-RATE</Typography>
+                                
                             </Grid>
-                            <Grid item md={6}>
+                            <Grid item md={5}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['1_pick']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['1_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['2_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['2_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['2_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['3_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['3_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['3_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['4_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['4_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['4_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['5_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['5_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['5_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['6_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['6_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['6_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['7_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['7_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['7_win']}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['8_pick']}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['8_pick']}</Typography>
+                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData['8_win']}</Typography>
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.null_pick}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.null_win}</Typography>
@@ -170,7 +186,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.pro_win}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.turbo_picks}</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.turbo_wins}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroGamesData.turn_rate}</Typography>
+                                
                             </Grid>
                         </Grid>
 

@@ -23,6 +23,7 @@ export interface heroAbilitiesDataType {
     attack_type: string,
     cm_enabled: boolean,
     move_speed: number,
+    turn_rate: number
 }
 
 export interface heroGamesDataType {
@@ -49,6 +50,6 @@ export interface heroGamesDataType {
     pro_win: number
     turbo_picks: number
     turbo_wins: number
-    turn_rate: number
+    
 
 }
