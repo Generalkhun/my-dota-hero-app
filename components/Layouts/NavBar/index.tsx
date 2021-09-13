@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NavBar = () => {
   const router = useRouter()
-  console.log('router', router);
   const pathname = get(router, 'pathname')
 
   const classes = useStyles();

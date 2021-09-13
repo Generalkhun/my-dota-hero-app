@@ -81,7 +81,6 @@ export const adjustHeroDataOnDisplaySetting = (resHeroStatsData, displaySettingS
       resHeroStatsDataAdjusted = orderBy(resHeroStatsDataAdjusted, ['attack_range'], ['desc'])
     }
   }
-  console.log('resHeroStatsDataAdjusted', resHeroStatsDataAdjusted);
 
   return resHeroStatsDataAdjusted || []
 }

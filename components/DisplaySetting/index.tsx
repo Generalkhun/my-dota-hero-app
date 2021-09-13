@@ -49,19 +49,15 @@ export const DisplaySetting = (props: Props) => {
     const classes = useStyles()
     const { heroList, dispatchDisplaySettingState } = props
     const onSearchHero = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('e.target.value', e.target.value);
         dispatchDisplaySettingState({ type: 'search', payload: e.target.value })
     }
     const onFilterHeroAttr = (newValue: string) => {
-        console.log('newValue', newValue);
         dispatchDisplaySettingState({ type: 'filterAttr', payload: newValue })
     }
     const onFilterHeroRole = (rolesTick: Object) => {
-        console.log('rolesTick', rolesTick);
         dispatchDisplaySettingState({ type: 'filterRole', payload: rolesTick })
     }
     const onSortHero = (sortingTopic: string) => {
-        console.log('sortingTopic', sortingTopic);
         dispatchDisplaySettingState({ type: 'sort', payload: sortingTopic })
     }
     return (

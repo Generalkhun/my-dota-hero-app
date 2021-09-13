@@ -56,7 +56,6 @@ const HeroListDisplay = (props: Props) => {
     const classes = useStyles();
 
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
-    console.log('displaySettingState', displaySettingState);
     const isShowBadge = (!isEmpty(get(displaySettingState, 'sortLogic'))) && (get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic') // show badge logic
     console.log('isShowBadge', isShowBadge);
 
