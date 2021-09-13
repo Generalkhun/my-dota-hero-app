@@ -1,4 +1,4 @@
-import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, Button, Badge, withStyles } from '@material-ui/core';
+import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, Button, Badge, withStyles, Typography } from '@material-ui/core';
 import React from 'react'
 import { map, get, includes, isEmpty } from 'lodash'
 import Link from 'next/link'
@@ -68,35 +68,32 @@ const HeroListDisplay = (props: Props) => {
                         <Paper className={classes.avatarsWrapper}>
                             {map(resHeroStatsDataAdj.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
-                                    <StyledTooltip PopperProps={{
-                                        keepMounted: true ,
-                                    }} key={index} title={
-                                        <>
-                                            <Link href={`heros/${heroStatus.id}`}>
-                                                <Button>{heroStatus.localized_name + " ⇨"}</Button>
-                                            </Link>
-                                        </>
-                                    } placement='top' arrow interactive>
-                                        <ListItem className={classes.listItemDisplay} key={index} >
-                                            {isShowBadge ?
-                                                <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge
-                                                    anchorOrigin={{
-                                                        vertical: 'top',
-                                                        horizontal: 'left',
-                                                    }}
-                                                    badgeContent={(index + 1) + (colNum * 11)}
-                                                    color={
-                                                        includes([...Array(15).keys()], parseInt((index + 1) + (colNum * 11))) ? (
-                                                            includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary' : 'error'
-                                                        ) : 'primary'
-                                                    }
-                                                    max={200}
-                                                >
-                                                    <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
-                                                </Badge>
-                                            }
+                                    <StyledTooltip key={index} title={
+                                        <Typography style={{ fontFamily: 'Cinzel' }}>{heroStatus.localized_name}</Typography>
+                                    } placement='top' arrow>
 
+                                        <ListItem className={classes.listItemDisplay} key={index} >
+                                            <Link href={`heros/${heroStatus.id}`}>
+                                                {isShowBadge ?
+                                                    <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge
+                                                        anchorOrigin={{
+                                                            vertical: 'top',
+                                                            horizontal: 'left',
+                                                        }}
+                                                        badgeContent={(index + 1) + (colNum * 11)}
+                                                        color={
+                                                            includes([...Array(15).keys()], parseInt((index + 1) + (colNum * 11))) ? (
+                                                                includes([1, 2, 3], parseInt((index + 1) + (colNum * 11))) ? 'secondary' : 'error'
+                                                            ) : 'primary'
+                                                        }
+                                                        max={200}
+                                                    >
+                                                        <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
+                                                    </Badge>
+                                                }
+                                            </Link>
                                         </ListItem>
+
                                     </StyledTooltip>
                                 )
                             }

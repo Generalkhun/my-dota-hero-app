@@ -75,7 +75,7 @@ const HeroCardMedia = ({ heroCardMediaData }: Props) => {
             </CardActionArea>
             <CardActions className={classes.heroCardActionAdd2FavButton}>
                 <Button onClick={() => onAddFavHeroHandler(heroCardMediaData.name)} size="large" color={isAlreadyFavOne ? "primary" : "secondary"} startIcon={<FavoriteIcon />}>
-                    {isAlreadyFavOne ? 'ALREADY ON YOUR FAVORITE LIST' : 'ADD TO MY FAVORITE HEROS'}
+                    {isAlreadyFavOne ? 'ALREADY IN MY FAVORITE' : 'ADD TO MY FAVORITE HEROS'}
                 </Button>
             </CardActions>
         </Card>
