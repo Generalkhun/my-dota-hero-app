@@ -47,13 +47,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
  */
 const StyledTooltip = withStyles({
     tooltipPlacementTop: {
-        margin: "0 0 0 0",
-    },
-    tooltipPlacementRight: {
-        margin: "4px",
-    },
-    tooltipPlacementLeft: {
-        margin: "0 0 0 0",
+        margin: "0px 0",
     },
 })(Tooltip);
 
@@ -74,13 +68,15 @@ const HeroListDisplay = (props: Props) => {
                         <Paper className={classes.avatarsWrapper}>
                             {map(resHeroStatsDataAdj.slice(0 + (colNum * 11), 11 + (colNum * 11)), function (heroStatus, index) {
                                 return (
-                                    <StyledTooltip key={index} title={
+                                    <StyledTooltip PopperProps={{
+                                        keepMounted: true ,
+                                    }} key={index} title={
                                         <>
                                             <Link href={`heros/${heroStatus.id}`}>
                                                 <Button>{heroStatus.localized_name + " ⇨"}</Button>
                                             </Link>
                                         </>
-                                    } placement='right' arrow interactive>
+                                    } placement='top' arrow interactive>
                                         <ListItem className={classes.listItemDisplay} key={index} >
                                             {isShowBadge ?
                                                 <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> : <Badge

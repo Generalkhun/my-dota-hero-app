@@ -23,12 +23,12 @@ const FilterBox = (props: Props) => {
     return (
         <div>
             <Grid container style={{ marginLeft: 20, height: 130 }} >
-                <Grid item  md={12} lg={7} style={{ height: 20 }} className={classes.roleFilteringWrapper}>
+                <Grid item  md={12} lg={8} style={{ height: 20 }} className={classes.roleFilteringWrapper}>
                     <RolesFiltering
                         onFilterHeroRole={onFilterHeroRole}
                     />
                 </Grid>
-                <Grid item  md={12} lg={5}>
+                <Grid item  md={12} lg={4}>
                     <BaseAttrFiltering
                         onFilterHeroAttr={onFilterHeroAttr}
                     />

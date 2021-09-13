@@ -71,7 +71,7 @@ export const DisplaySetting = (props: Props) => {
                     onSearchHero={onSearchHero}
                 />
             </Grid>
-            <Grid item xs={10} sm={12} md={12} lg={8} xl={7} className={classes.filterWarpper}>
+            <Grid item xs={10} sm={12} md={12} lg={7} xl={7} className={classes.filterWarpper}>
                 <FilterBox
                     onFilterHeroAttr={onFilterHeroAttr}
                     onFilterHeroRole={onFilterHeroRole}

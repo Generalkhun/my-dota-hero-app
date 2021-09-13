@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             marginLeft: 40
         },
+        [theme.breakpoints.down('lg')]: {
+            marginLeft: 40
+        },
     }
 }))
 const SortBox = ({ onSortHero }: Props) => {
