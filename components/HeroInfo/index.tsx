@@ -22,12 +22,6 @@ const useStyles = makeStyles((theme) => ({
             paddingBottom: 40
         }
     },
-    // heroDetailGridWrapper: {
-    //     [theme.breakpoints.between('sm','md')]: {
-    //         paddingLeft: 40,
-    //         paddingBottom: 40
-    //     }
-    // }
 }))
 
 
@@ -44,7 +38,7 @@ const HeroInfo = ({ heroStat }: Props) => {
                     heroCardMediaData={heroCardMediaData}
                 />
             </Grid>
-            <Grid item xs={10} sm={6} md={7} lg={8} className={classes.heroDetailGridWrapper}>
+            <Grid item xs={10} sm={6} md={7} lg={8}>
                 <HeroDetailInfo
                     heroAbilitiesData={heroAbilitiesData}
                     heroGamesData={heroGamesData}

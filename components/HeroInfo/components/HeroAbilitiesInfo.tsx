@@ -109,7 +109,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>CM-ENABLED</Typography>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>MOVE-SPEED</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURN-RATE</Typography>
+                                {/* <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>TURN-RATE</Typography> */}
                             </Grid>
                             <Grid item  md={5}>
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.agi_gain}</Typography>
@@ -122,7 +122,7 @@ const HeroDetailInfo = ({ heroAbilitiesData,heroGamesData }: Props) => {
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.cm_enabled ? '✔' : '✘'}</Typography>
 
                                 <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.move_speed}</Typography>
-                                <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.turn_rate}</Typography>
+                                {/* <Typography variant='body1' style={{ fontFamily: 'Cinzel', color: 'white', marginLeft: 10 }}>{heroAbilitiesData.turn_rate}</Typography> */}
                             </Grid>
                         </Grid>
 
