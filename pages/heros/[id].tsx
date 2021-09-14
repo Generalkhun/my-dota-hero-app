@@ -46,7 +46,7 @@ const Details = (
     )
 }
 
-
+// typeof window === 'undefined' is to check wether it is serverside or not
 
 
 /**
