@@ -1,9 +1,9 @@
 import { Avatar, Theme, makeStyles, createStyles, Paper, ListItem, Grid, Tooltip, Button, Badge, withStyles, Typography } from '@material-ui/core';
 import React from 'react'
 import { map, get, includes, isEmpty } from 'lodash'
-import Link from 'next/link'
 import { displaySettingStateType } from '../../types';
 import { adjustHeroDataOnDisplaySetting } from '../../helpers';
+import { useRouter } from 'next/router'
 interface Props {
     resHeroStatsData: Array<any>
     displaySettingState: displaySettingStateType
@@ -54,10 +54,11 @@ const StyledTooltip = withStyles({
 const HeroListDisplay = (props: Props) => {
     const { resHeroStatsData, displaySettingState } = props
     const classes = useStyles();
+    const router = useRouter()
 
     const resHeroStatsDataAdj = adjustHeroDataOnDisplaySetting(resHeroStatsData, displaySettingState) // search, filter, sort will effect on the data sequence and occurance
     const isNotShowBadge = isEmpty(get(displaySettingState, 'sortLogic')) || get(displaySettingState, 'sortLogic') === 'None' || get(displaySettingState, 'sortLogic') === 'Alphabetic' // show badge logic
-
+    
     return (
         <Grid container className={classes.displayWrapper}>
             {[...Array(11).keys()].map((colNum) => {
@@ -71,7 +72,12 @@ const HeroListDisplay = (props: Props) => {
                                     } placement='top' arrow>
 
                                         <ListItem className={classes.listItemDisplay} key={index} >
-                                            <Link href={`heros/${heroStatus.id}`}>
+                                            <div onClick={(e) => {
+                                                e.preventDefault()
+                                                typeof window !== 'undefined' && router.push(`heros/${heroStatus.id}`)
+                                            }} 
+                                            // href={`heros/${heroStatus.id}`}
+                                            >
                                                 {isNotShowBadge ? <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} /> :
                                                     <Badge
                                                         anchorOrigin={{
@@ -89,7 +95,7 @@ const HeroListDisplay = (props: Props) => {
                                                         <Avatar variant='square' alt="Hero" src={heroStatus.localized_name !== 'Dawnbreaker' ? `http://cdn.dota2.com/${heroStatus.img}` : 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dawnbreaker/dawnbreaker_sfm.jpg'} className={classes.largeAvatar} />
                                                     </Badge>
                                                 }
-                                            </Link>
+                                            </div>
                                         </ListItem>
 
                                     </StyledTooltip>

@@ -2,7 +2,6 @@ import { IconButton, Theme, Toolbar, Typography, AppBar, makeStyles, createStyle
 import StarIcon from '@material-ui/icons/Star';
 import React from "react";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import Link from 'next/link'
 import { useRouter } from "next/dist/client/router";
 import { get } from 'lodash'
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,9 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 5,
       color: '#f50057'
     },
-    naviagtionWrapper :{
+    naviagtionWrapper: {
       //paddingLeft:480,
-      marginTop:12,
+      marginTop: 12,
       // [theme.breakpoints.down('lg')]:{
       //   paddingLeft:180
       // },
@@ -61,12 +60,16 @@ const NavBar = () => {
           <Grid container>
             <Grid item xs={3} sm={2} md={1} lg={1}>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <Link href='/heros'>
+                <div onClick={(e) => {
+                  e.preventDefault()
+                  typeof window !== 'undefined' &&  router.push('/heros')
+                }}
+                >
                   <img height={50} width={100} src='https://i.pinimg.com/originals/27/ff/39/27ff3902c1363a776c9db6ee6f7d76d8.jpg' />
-                </Link>
+                </div>
               </IconButton>
             </Grid>
-            <Grid item style={{zIndex:9999, marginTop:22}} xs={6} sm={6} md={6} lg={6}>
+            <Grid item style={{ zIndex: 9999, marginTop: 22 }} xs={6} sm={6} md={6} lg={6}>
               <Typography variant="h6" className={classes.title}>
                 MY DOTA HERO
               </Typography>
@@ -74,19 +77,27 @@ const NavBar = () => {
             <Grid item className={classes.naviagtionWrapper}>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <StarIcon className={pathname === '/heros' ? classes.otherNavIconSelectedheros : classes.otherNavIcon} />
-                <Link href='/heros'>
+                <div onClick={(e) => {
+                  e.preventDefault()
+                  typeof window !== 'undefined' &&  router.push('/heros')
+                }}
+                >
                   <Typography className={classes.otherNavText}>
                     HERO LIST
                   </Typography>
-                </Link>
+                </div>
               </IconButton>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <FavoriteIcon className={pathname === '/myfavhero' ? classes.otherNavIconSelectedfav : classes.otherNavIcon} />
-                <Link href='/myfavhero'>
+                <div onClick={(e) => {
+                  e.preventDefault()
+                  typeof window !== 'undefined' &&  router.push('/myfavhero')
+                }}
+                >
                   <Typography className={classes.otherNavText}>
                     My favorite
                   </Typography>
-                </Link>
+                </div>
               </IconButton>
             </Grid>
           </Grid>

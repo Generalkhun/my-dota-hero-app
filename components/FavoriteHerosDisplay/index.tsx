@@ -1,7 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core'
 import { includes, map } from 'lodash'
 import React from 'react'
-import Link from 'next/link'
 
 interface Props {
     favHerosList: string[]

@@ -20,21 +20,29 @@ const Details = (
     const { id } = router.query
 
     // get heros data from the context here
-    const heroStatsContext = useContext(HerosStatsDataContext)
-    // filter only this hero data and store on heroStat
 
-    const heroStat = filter(heroStatsContext.HeroStatsData, (stat) => {
-        return stat.id.toString() === id
-    })[0]
+    let heroStat
+    if (typeof window !== 'undefined') {
+        const heroStatsContext = useContext(HerosStatsDataContext)
+        // filter only this hero data and store on heroStat
+
+        heroStat = filter(heroStatsContext.HeroStatsData, (stat) => {
+            return stat.id.toString() === id
+        })[0]
+    } else {
+        heroStat = {}
+    }
+
 
     // if id is not valid, explicitly redirect to 404 page
     if (!id) {
-        router.push('/404')
+        typeof window !== 'undefined' && router.push('/404')
     }
     return (
-        <HeroInfo
+        <>{typeof window === 'undefined' ? <></> : <HeroInfo
             heroStat={heroStat}
-        />
+        />}</>
+
     )
 }
 
