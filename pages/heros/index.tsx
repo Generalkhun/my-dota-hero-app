@@ -1,7 +1,8 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import { DisplaySetting } from '../../components/DisplaySetting';
 import HeroListDisplay from '../../components/HeroListDisplay';
+import { HerosStatsDataContext } from '../../contextProviders/HerosStatsDataProvider';
 
 interface Props {
     data: any
@@ -28,6 +29,15 @@ const reducer = (state, action: any) => {
     }
 }
 const Heros = ({ heroStats }: InferGetStaticPropsType<typeof getStaticProps>) => {
+    
+    // set data to the context on useEffect
+    const heroStatsContext = useContext(HerosStatsDataContext)
+
+    useEffect(() => {
+        heroStatsContext.InitializeHeroStats(heroStats)
+    }, [])
+
+    // define a displaying setting data state
     const [displaySettingState, dispatchDisplaySettingState] = useReducer(reducer, initialState)
 
     return (

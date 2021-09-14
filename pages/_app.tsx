@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 
 // global styles are required to be added to `_app.js` per Next.js requirements.
 import "nprogress/nprogress.css";
+import { HerosStatsDataProvider } from '../contextProviders/HerosStatsDataProvider'
 
 const TopProgressBar = dynamic(
   () => {
@@ -18,12 +19,15 @@ const TopProgressBar = dynamic(
 
 function MyApp({ Component, pageProps }) {
   return (
-    <FavoriteHerosProvider>
-      <Layouts>
-        <TopProgressBar />
-        <Component {...pageProps} />
-      </Layouts>
-    </FavoriteHerosProvider>
+    <HerosStatsDataProvider>
+      <FavoriteHerosProvider>
+        <Layouts>
+          <TopProgressBar />
+          <Component {...pageProps} />
+        </Layouts>
+      </FavoriteHerosProvider>
+    </HerosStatsDataProvider>
+
 
   )
 }
